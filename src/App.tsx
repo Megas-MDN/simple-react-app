@@ -11,7 +11,7 @@ import Flex from './components/Flex';
 import FlexCol from './components/FlexCol';
 import InputText from './components/InputText';
 import Select, { IOption } from './components/Select';
-import { useState } from 'react';
+import React from 'react';
 import { Text } from './components/Text';
 
 const router = createBrowserRouter([
@@ -46,7 +46,7 @@ function App() {
 
 function Home() {
   const navigate = useNavigate();
-  const [options, setOptions] = useState<IOption[]>([
+  const [options, setOptions] = React.useState<IOption[]>([
     {
       id: 1,
       value: '1',
