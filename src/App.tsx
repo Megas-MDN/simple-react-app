@@ -9,6 +9,7 @@ import {
 import { Button } from './components/Button';
 import Flex from './components/Flex';
 import FlexCol from './components/FlexCol';
+import InputText from './components/InputText';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,7 @@ function Home() {
   return (
     <div className={styles.container}>
       <h2>Home</h2>
+      <InputText placeholder='Test' />
       <button onClick={() => navigate('/about')}>GO about</button>
     </div>
   );
