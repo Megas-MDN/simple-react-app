@@ -11,9 +11,9 @@
     "prepare": "husky install"
   },
   "husky": {
-    "pre-commit": "lint-staged"
+    "pre-commit": "yarn build && lint-staged"
   },
-"lint-staged": {
+  "lint-staged": {
     "*.{ts,js}": "eslint --cache --fix",
     "*.{ts,js,css,md}": "prettier --write",
     "*.js": "eslint --cache --fix",
