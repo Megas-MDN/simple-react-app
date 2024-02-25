@@ -10,6 +10,9 @@ import { Button } from './components/Button';
 import Flex from './components/Flex';
 import FlexCol from './components/FlexCol';
 import InputText from './components/InputText';
+import Select, { IOption } from './components/Select';
+import { useState } from 'react';
+import { Text } from './components/Text';
 
 const router = createBrowserRouter([
   {
@@ -43,11 +46,50 @@ function App() {
 
 function Home() {
   const navigate = useNavigate();
+  const [options, setOptions] = useState<IOption[]>([
+    {
+      id: 1,
+      value: '1',
+      label: 'Test',
+      select: true,
+    },
+    {
+      id: 2,
+      value: '2',
+      label: 'Test2',
+      select: false,
+    },
+    {
+      id: 3,
+      value: '3',
+      label: 'Test3',
+      select: false,
+    },
+  ]);
+
+  const handleSelect = (e: string) => {
+    console.log('e', e);
+    const currentOptions = options.map((option) => {
+      if (option.value === e) {
+        return {
+          ...option,
+          select: true,
+        };
+      }
+      return {
+        ...option,
+        select: false,
+      };
+    });
+    setOptions(currentOptions);
+  };
+
   return (
     <div className={styles.container}>
       <h2>Home</h2>
-      <InputText placeholder='Test' />
-      <button onClick={() => navigate('/about')}>GO about</button>
+      <InputText placeholder='Tesy' autoComplete='off' />
+      <Select label='Testx ded x' options={options} onChange={handleSelect} />
+      <Button onClick={() => navigate('/about')}>GO about</Button>
     </div>
   );
 }
@@ -58,7 +100,7 @@ function About() {
   return (
     <div className={styles.container}>
       <h2>About</h2>
-      <FlexCol styles='bb w-fit h-fit p-2'>
+      <FlexCol>
         {ids.map((id) => (
           <li key={id} className='list-none'>
             <Link to={`/about/${id}`}>About {id}</Link>
@@ -66,13 +108,16 @@ function About() {
         ))}
       </FlexCol>
       <Outlet />
-      <Flex styles='bb w-[250px] h-[100px]'>
-        <Button text='GO Home' onClick={() => navigate('/')} />
-        <Button
-          text='GO Test'
-          onClick={() => navigate('/')}
-          styles='bg-red-600 hover:bg-red-800'
-        />
+      <Flex
+        gap={2}
+        sx={{ border: '1px solid red', width: '100%', padding: '8px' }}
+      >
+        <Button onClick={() => navigate('/')}>
+          <Text>Go Home</Text>
+        </Button>
+        <Button onClick={() => navigate('/')}>
+          <Text>GO Test</Text>
+        </Button>
       </Flex>
     </div>
   );

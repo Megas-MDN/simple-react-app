@@ -1,19 +1,10 @@
-import React from 'react';
+import { styled } from '@mui/material/styles';
+import { Stack as MuiStack } from '@mui/material';
 
-const Flex = ({
-  children,
-  styles = '',
-}: {
-  children: React.ReactNode;
-  styles?: string;
-}) => {
-  return (
-    <div
-      className={`flex w-full h-full items-center justify-center gap-2 ${styles}`}
-    >
-      {children}
-    </div>
-  );
-};
+const Flex = styled(MuiStack)({
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+});
 
 export default Flex;
