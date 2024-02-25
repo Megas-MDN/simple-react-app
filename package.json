@@ -10,9 +10,10 @@
     "preview": "vite preview"
   },
   "husky": {
-    "hooks": {
-      "pre-commit": "yarn build && lint-staged"
-    }
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "**/*.ts": "tsc-files --noEmit"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
