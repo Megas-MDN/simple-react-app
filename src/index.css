@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-zinc-950;
+  @apply text-zinc-200;
+  font-family: 'Inter', sans-serif;
+}
+.bb {
+  border: 1px solid red;
+}
+
+.bbg {
+  border: 1px solid green;
+}
+
+.bbb {
+  border: 1px solid blue;
+}
