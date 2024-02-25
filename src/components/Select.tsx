@@ -5,7 +5,7 @@ import {
   Select as MuiSelect,
   SxProps,
 } from '@mui/material';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 export interface IOption {
   id?: string | number;
   value: string;
