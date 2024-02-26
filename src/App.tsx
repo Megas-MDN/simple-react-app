@@ -13,12 +13,17 @@ import InputText from './components/InputText';
 import Select, { IOption } from './components/Select';
 import React from 'react';
 import { Text } from './components/Text';
+import RequestPage from './pages/RequestPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
     errorElement: <Error />,
+  },
+  {
+    path: '/request',
+    element: <RequestPage />,
   },
   {
     path: '/about',
@@ -89,7 +94,7 @@ function Home() {
       <h2>Home</h2>
       <InputText placeholder='Tesy' autoComplete='off' />
       <Select label='Testx ded x' options={options} onChange={handleSelect} />
-      <Button onClick={() => navigate('/about')}>GO about</Button>
+      <Button onClick={() => navigate('/request')}>GO about</Button>
     </div>
   );
 }

@@ -5,6 +5,7 @@ const FlexCol = styled(MuiStack)({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
+  width: '100%',
 });
 
 export default FlexCol;

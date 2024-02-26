@@ -14,7 +14,7 @@ export interface IOption {
 }
 
 export interface ISelect {
-  containerStyles?: SxProps;
+  sx?: SxProps;
   htmlFor?: string;
   labelStyles?: SxProps;
   label?: string;
@@ -26,7 +26,7 @@ export interface ISelect {
 }
 
 const Select = ({
-  containerStyles = {
+  sx = {
     maxWidth: '250px',
   },
   htmlFor = '',
@@ -42,7 +42,7 @@ const Select = ({
     <FormControl
       fullWidth
       sx={{
-        ...containerStyles,
+        ...sx,
       }}
     >
       <InputLabel

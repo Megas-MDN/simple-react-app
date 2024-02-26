@@ -2,7 +2,6 @@ import { TextField } from '@mui/material';
 import { styled } from '@mui/system';
 
 const InputText = styled(TextField)({
-  border: '1px solid #FAFAFA',
   borderRadius: '8px',
   '& .MuiInputBase-root': {
     border: 'none',
@@ -18,7 +17,7 @@ const InputText = styled(TextField)({
   '& .MuiInputBase-input:hover': {
     border: 'none',
   },
-  '& label.Mui-focused': {
+  '& .MuiFormLabel-root': {
     color: '#FAFAFA',
   },
   '& .MuiOutlinedInput-root': {
@@ -27,6 +26,19 @@ const InputText = styled(TextField)({
     },
     '&.Mui-focused fieldset': {
       borderColor: 'transparent',
+    },
+    '&:hover .MuiOutlinedInput-notchedOutline': {
+      border: '1px solid #FAFAFA',
+      color: '#FAFAFA',
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+      border: '1px solid #FAFAFA',
+      color: '#FAFAFA',
+    },
+    '& .MuiOutlinedInput-input.Mui-disabled': {
+      color: '#FAFAFA',
+      '-webkit-text-fill-color': '#FAFAFA',
+      opacity: 0.7,
     },
   },
 });
