@@ -1,14 +1,12 @@
 import { useClientFetch } from '../stores/useClientFetch.ts';
 import FlexCol from '../components/FlexCol';
-import { Backdrop } from '@mui/material';
 import InputText from '../components/InputText';
 import Flex from '../components/Flex';
 import Select from '../components/Select';
 import React from 'react';
 import { Button } from '../components/Button';
-import { Text } from '../components/Text';
 import CustomHeader from './components/CustomHeader';
-import { useNavigate } from 'react-router-dom';
+import Loader from '../components/Loader.tsx';
 
 const optionsRequest = [
   {
@@ -49,7 +47,7 @@ const RequestPage = () => {
     key: '',
     value: '',
   });
-  const navigate = useNavigate();
+
   const { sendRequest, isLoading, error, data } = useClientFetch((state) => ({
     sendRequest: state.sendRequest,
     isLoading: state.isLoading,
@@ -81,25 +79,11 @@ const RequestPage = () => {
   };
   return (
     <FlexCol gap={2}>
-      <Backdrop open={isLoading} sx={{ zIndex: 1 }} />
-      <Button
-        onClick={() => navigate('/')}
-        sx={{
-          mt: 2,
-          backgroundColor: '#101010',
-          '&:active': { backgroundColor: '#101010' },
-          '&:hover': { backgroundColor: '#101010' },
-          color: 'gold',
-          width: '200px',
-        }}
-      >
-        <Text sx={{ color: 'gold', margin: '0' }}>Request Page</Text>
-      </Button>
-      <FlexCol gap={2} sx={{ border: '1px solid gold' }}>
+      <Loader open={isLoading} />
+      <FlexCol gap={2} sx={{}}>
         <Flex
           gap={2}
           sx={{
-            border: '1px solid red',
             justifyContent: 'space-between',
             py: 1.5,
             px: 3,
@@ -117,7 +101,6 @@ const RequestPage = () => {
           />
           <Button
             onClick={() => {
-              console.log(auth);
               sendRequest({
                 url,
                 method,
@@ -149,6 +132,7 @@ const RequestPage = () => {
               />
             ))}
         </FlexCol>
+        Loader
       </FlexCol>
       <InputText
         sx={{ width: '500px', maxHeight: '70vh', overflow: 'auto' }}

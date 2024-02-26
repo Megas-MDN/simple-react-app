@@ -20,6 +20,9 @@ const InputText = styled(TextField)({
   '& .MuiFormLabel-root': {
     color: '#FAFAFA',
   },
+  '& .MuiFormLabel-root.Mui-disabled': {
+    color: '#FAFAFA',
+  },
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
       border: 'trasnparent',
@@ -37,7 +40,7 @@ const InputText = styled(TextField)({
     },
     '& .MuiOutlinedInput-input.Mui-disabled': {
       color: '#FAFAFA',
-      '-webkit-text-fill-color': '#FAFAFA',
+      WebkitTextFillColor: '#FAFAFA',
       opacity: 0.7,
     },
   },

@@ -6,7 +6,7 @@ export const Text = styled(MuiText)({
   fontWeight: '300',
   lineHeight: '24px',
   fontFamily: 'Poppins',
-  color: '#162233',
+  color: '#FAFAFA',
   textAlign: 'center',
   display: 'flex',
   alignItems: 'center',
