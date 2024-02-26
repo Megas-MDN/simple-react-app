@@ -1,5 +1,5 @@
 import { StateCreator, create } from 'zustand';
-import { devtools, persist, createJSONStorage } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 export interface IGeneralStore {
   count: number;
@@ -14,16 +14,10 @@ const INIT_STATE: IInitState = {
 };
 
 const myMiddlewares = (f: StateCreator<IGeneralStore>) =>
-  devtools(
-    persist(f, {
-      name: 'generalStore',
-      storage: createJSONStorage(() => localStorage),
-    }),
-    {
-      name: 'generalStore',
-      enabled: true,
-    }
-  );
+  persist(f, {
+    name: 'generalStore',
+    storage: createJSONStorage(() => localStorage),
+  });
 
 export const useGeneralStore = create<IGeneralStore>()(
   myMiddlewares((set, get) => ({
