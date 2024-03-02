@@ -1,11 +1,11 @@
 import InputText from '../../components/InputText';
 import Flex from '../../components/Flex';
-import { Button } from '../../components/Button';
 import React, { useEffect } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box } from '@mui/material';
+import { ButtonTiny } from '../../components/ButtonTiny';
 
 const CustomHeader = ({
   addingItem,
@@ -49,13 +49,18 @@ const CustomHeader = ({
       />
       {!editMode && (
         <>
-          <Button
+          <ButtonTiny
+            disabled={!key || !value}
             sx={{
               borderRadius: '100%',
               backgroundColor: '#44ee11',
               padding: '0px',
               width: '50px',
               height: '50px',
+              '&:disabled': {
+                backgroundColor: '#44ee11',
+                opacity: 0.5,
+              },
             }}
             onClick={() => {
               if (!key || !value) return;
@@ -65,8 +70,8 @@ const CustomHeader = ({
             }}
           >
             <AddIcon />
-          </Button>
-          <Box sx={{ width: '66px', height: '50px' }} />
+          </ButtonTiny>
+          <Box sx={{ width: '40px', height: '40px' }} />
         </>
       )}
       {editMode && (
@@ -76,7 +81,7 @@ const CustomHeader = ({
             gap: '16px',
           }}
         >
-          <Button
+          <ButtonTiny
             sx={{
               borderRadius: '100%',
               backgroundColor: '#44ee11',
@@ -87,8 +92,8 @@ const CustomHeader = ({
             onClick={() => setItem(key, value)}
           >
             <EditIcon />
-          </Button>
-          <Button
+          </ButtonTiny>
+          <ButtonTiny
             sx={{
               borderRadius: '100%',
               backgroundColor: '#44ee11',
@@ -99,7 +104,7 @@ const CustomHeader = ({
             onClick={() => removeItem()}
           >
             <DeleteIcon />
-          </Button>
+          </ButtonTiny>
         </Flex>
       )}
     </Flex>
