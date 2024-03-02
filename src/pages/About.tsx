@@ -14,7 +14,7 @@ const About = () => {
   return (
     <>
       <div className={styles.container}>
-        <h2>About</h2>
+        <h2>About X</h2>
         <FlexCol>
           {ids.map((id) => (
             <li key={id} className='list-none'>
