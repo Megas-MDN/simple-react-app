@@ -1,0 +1,19 @@
+name: My CI/CD
+
+on: [push, pull_request]
+
+jobs:
+  continue-progress:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.
+      - name: run install and build
+        run: |
+            npm install
+            npm run build
+            npm run test
