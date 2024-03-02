@@ -7,6 +7,7 @@ import React from 'react';
 import { Button } from '../components/Button';
 import CustomHeader from './components/CustomHeader';
 import Loader from '../components/Loader.tsx';
+import getHeightElement from '../utils/getHeightElement.ts';
 
 const optionsRequest = [
   {
@@ -77,69 +78,80 @@ const RequestPage = () => {
     delete currentAuth[key];
     setAuth(currentAuth);
   };
+
   return (
-    <FlexCol gap={2}>
-      <Loader open={isLoading} />
-      <FlexCol gap={2} sx={{}}>
-        <Flex
-          gap={2}
-          sx={{
-            justifyContent: 'space-between',
-            py: 1.5,
-            px: 3,
-          }}
-        >
-          <Select
-            options={options}
-            onChange={handleSelect}
-            sx={{ width: '150px' }}
-          />
-          <InputText
-            sx={{ width: '350px' }}
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-          />
-          <Button
-            onClick={() => {
-              sendRequest({
-                url,
-                method,
-                data: {},
-                auth,
-              });
+    <>
+      <FlexCol
+        gap={2}
+        sx={{
+          height: `calc(100vh - ${getHeightElement().height}px)`,
+          justifyContent: 'flex-start',
+        }}
+      >
+        <Loader open={isLoading} />
+        <FlexCol gap={2} sx={{}}>
+          <Flex
+            gap={2}
+            sx={{
+              justifyContent: 'space-between',
+              py: 1.5,
+              px: 3,
             }}
           >
-            Send
-          </Button>
-        </Flex>
-        <FlexCol>
-          <CustomHeader
-            propKey={currentAuth.key}
-            propValue={currentAuth.value}
-            addingItem={(key, value) => setAuth({ ...auth, [key]: value })}
-          />
-          {Object.keys(auth)
-            .reverse()
-            .map((k, index) => (
-              <CustomHeader
-                key={k || index}
-                propKey={k}
-                propValue={auth[k]}
-                editMode={true}
-                addingItem={(key, value) => setAuth({ ...auth, [key]: value })}
-                setItem={(key, value) => setCurrentAuth({ key, value })}
-                removeItem={() => removeKeyOfAuth(k)}
-              />
-            ))}
+            <Select
+              options={options}
+              onChange={handleSelect}
+              sx={{ width: '150px' }}
+            />
+            <InputText
+              sx={{ width: '350px' }}
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+            />
+            <Button
+              onClick={() => {
+                sendRequest({
+                  url,
+                  method,
+                  data: {},
+                  auth,
+                });
+              }}
+            >
+              Send
+            </Button>
+          </Flex>
+          <FlexCol>
+            <CustomHeader
+              propKey={currentAuth.key}
+              propValue={currentAuth.value}
+              addingItem={(key, value) => setAuth({ ...auth, [key]: value })}
+            />
+            {Object.keys(auth)
+              .reverse()
+              .map((k, index) => (
+                <CustomHeader
+                  key={k || index}
+                  propKey={k}
+                  propValue={auth[k]}
+                  editMode={true}
+                  addingItem={(key, value) =>
+                    setAuth({ ...auth, [key]: value })
+                  }
+                  setItem={(key, value) => setCurrentAuth({ key, value })}
+                  removeItem={() => removeKeyOfAuth(k)}
+                />
+              ))}
+          </FlexCol>
+          Loader
         </FlexCol>
-        Loader
+        <InputText
+          sx={{ width: '500px', maxHeight: '70vh', overflow: 'auto' }}
+          multiline
+          value={JSON.stringify(error || data, null, 2)}
+        />
       </FlexCol>
-      <InputText
-        sx={{ width: '500px', maxHeight: '70vh', overflow: 'auto' }}
-        multiline
-        value={JSON.stringify(error || data, null, 2)}
-      />
-    </FlexCol>
+    </>
   );
 };
 
